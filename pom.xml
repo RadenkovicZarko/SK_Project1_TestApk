@@ -23,7 +23,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com-komponente-projekat1</groupId>
+            <groupId>.com-komponente-projekat1</groupId>
             <artifactId>GoogleDriveImplementation</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>runtime</scope>
