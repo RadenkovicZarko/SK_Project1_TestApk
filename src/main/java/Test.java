@@ -55,7 +55,8 @@ public class Test {
           }
           catch (MyException e)
           {
-            System.out.println("The choosen path does not exist, please insert another:");
+//            System.out.println("The choosen path does not exist, please insert another:");
+            System.out.println(e.getMessage());
           }
       }
 
@@ -712,16 +713,8 @@ public class Test {
         {
           System.out.println("Wront input, try again");
         }
-
-
         System.out.println("Thanks for using out aplication");
-
-
-
-
       }
-
-
     } catch (ClassNotFoundException exc) {
       exc.printStackTrace();
     }
