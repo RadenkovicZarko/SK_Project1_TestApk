@@ -1,4 +1,5 @@
 import java.sql.SQLOutput;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Test {
@@ -573,7 +574,116 @@ public class Test {
                         System.out.println(res);
                     }
                     else if(odabran==12 || odabran==13 || odabran==14 || odabran==15)
-                    {}
+                    {
+                      System.out.println("Insert path to folder:");
+                      String path=sc.nextLine();
+                      if(odabran==12 || odabran==13)
+                      {
+                        Date dateFrom=null;
+                        System.out.println("Insert date from: (format: dd/mm/yyyy)");
+                        while(true) {
+                          String d=sc.nextLine();
+                          String d1=d;
+                          String str[]=d.split("/");
+                          if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
+                            try {
+                               dateFrom= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                              break;
+                            } catch (Exception e) {
+                              System.out.println("Bad date");
+                            }
+                          } else {
+                            System.out.println("Wrong date format, try again");
+                          }
+                        }
+                        Date dateTo=null;
+                        System.out.println("Insert date to: (format: dd/mm/yyyy)");
+                        while(true) {
+                          String d=sc.nextLine();
+                          String d1=d;
+                          String str[]=d.split("/");
+                          if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
+                            try {
+                               dateTo= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                              break;
+                            } catch (Exception e) {
+                              System.out.println("Bad date");
+                            }
+                          } else {
+                            System.out.println("Wrong date format, try again");
+                          }
+                        }
+                        try {
+                          Map<String, FileMetadata> map=new LinkedHashMap<>();
+                          if(odabran==12)
+                          {
+                            map=storageSpecification.returnCreatedFilesInDateInterval(path,dateFrom,dateTo);
+                          }
+                          else {
+                            map=storageSpecification.returnModifiedFilesInDateInterval(path,dateFrom,dateTo);
+                          }
+                        }
+                        catch (MyException e)
+                        {
+                          System.out.println(e.getMessage());
+                        }
+                      }
+                      else if(odabran==14)
+                      {
+                        Date dateFrom=null;
+                        System.out.println("Insert date from: (format: dd/mm/yyyy)");
+                        while(true) {
+                          String d=sc.nextLine();
+                          String d1=d;
+                          String str[]=d.split("/");
+                          if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
+                            try {
+                              dateFrom= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                              break;
+                            } catch (Exception e) {
+                              System.out.println("Bad date");
+                            }
+                          } else {
+                            System.out.println("Wrong date format, try again");
+                          }
+                        }
+                        try {
+                          Map<String, FileMetadata> map=new LinkedHashMap<>();
+                          map=storageSpecification.returnModifiedFilesFromDate(path,dateFrom);
+                        }
+                        catch (MyException e)
+                        {
+                          System.out.println(e.getMessage());
+                        }
+                      }
+                      else {
+                        Date dateTo=null;
+                        System.out.println("Insert date from: (format: dd/mm/yyyy)");
+                        while(true) {
+                          String d=sc.nextLine();
+                          String d1=d;
+                          String str[]=d.split("/");
+                          if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
+                            try {
+                              dateTo= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                              break;
+                            } catch (Exception e) {
+                              System.out.println("Bad date");
+                            }
+                          } else {
+                            System.out.println("Wrong date format, try again");
+                          }
+                        }
+                        try {
+                          Map<String, FileMetadata> map=new LinkedHashMap<>();
+                          map=storageSpecification.returnModifiedFilesBeforeDate(path,dateTo);
+                        }
+                        catch (MyException e)
+                        {
+                          System.out.println(e.getMessage());
+                        }
+                      }
+                    }
                     else if(odabran==16)
                     {
                       break;
