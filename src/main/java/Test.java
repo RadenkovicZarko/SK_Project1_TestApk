@@ -614,7 +614,7 @@ public class Test {
                           String str[]=d.split("/");
                           if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
                             try {
-                               dateFrom= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                               dateFrom= new SimpleDateFormat("dd/M/yyyy").parse(d1);
                               break;
                             } catch (Exception e) {
                               System.out.println("Bad date");
@@ -631,7 +631,7 @@ public class Test {
                           String str[]=d.split("/");
                           if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
                             try {
-                               dateTo= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                               dateTo= new SimpleDateFormat("dd/M/yyyy").parse(d1);
                               break;
                             } catch (Exception e) {
                               System.out.println("Bad date");
@@ -666,7 +666,7 @@ public class Test {
                           String str[]=d.split("/");
                           if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
                             try {
-                              dateFrom= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                              dateFrom= new SimpleDateFormat("dd/M/yyyy").parse(d1);
                               break;
                             } catch (Exception e) {
                               System.out.println("Bad date");
@@ -695,7 +695,7 @@ public class Test {
                           String str[]=d.split("/");
                           if (d.contains("/") && str.length == 3 && str[0].length() == 2 && isNumeric(str[0]) && str[1].length() == 2 && isNumeric(str[1]) && str[2].length() == 4 && isNumeric(str[2])) {
                             try {
-                              dateTo= new SimpleDateFormat("dd/mm/yyyy").parse(d1);
+                              dateTo= new SimpleDateFormat("dd/M/yyyy").parse(d1);
                               break;
                             } catch (Exception e) {
                               System.out.println("Bad date");
