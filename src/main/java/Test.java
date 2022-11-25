@@ -121,6 +121,7 @@ public class Test {
                 System.out.println("Wrong input, try again.");
               }
             }
+            storageSpecification.getConfiguration().setForbiddenExtensions(list);
             break;
           } else if (odluka.equalsIgnoreCase("No")) {
             System.out.println("Nice.");
@@ -152,6 +153,7 @@ public class Test {
                 System.out.println("Wrong input, try again.");
               }
             }
+            storageSpecification.getConfiguration().setNumberOfFilesInFolder(mapa);
             break;
           } else if (odluka.equalsIgnoreCase("No")) {
             System.out.println("Nice.");
@@ -162,16 +164,17 @@ public class Test {
             System.out.println("Wrong input, try again.");
           }
         }
+        try{
+          storageSpecification.createRootFolder();
+          System.out.println("Storage is ready!");
+        }
+        catch (MyException e)
+        {
+          System.out.println(e.getMessage());
+        }
       }
 
-      try{
-        storageSpecification.createRootFolder();
-        System.out.println("Storage is ready!");
-      }
-      catch (MyException e)
-      {
-        System.out.println(e.getMessage());
-      }
+
 
       while(true)
       {
@@ -202,13 +205,15 @@ public class Test {
                     {
                       System.out.println("Insert path to new folder and name of new folder:");
                       String str=sc.nextLine();
-                      String[] input=str.split(" +");
+                      String[] input=str.split(" ");
                       if(input.length != 2)
                       {
+
                         System.out.println("Something went wrong");
                         continue;
                       }
                       try{
+                        System.out.println(input[0]+" "+input[1]);
                         storageSpecification.createFolderOnSpecifiedPath(input[0],input[1]);
                         System.out.println("This action is completed");
                       }
