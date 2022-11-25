@@ -51,6 +51,7 @@ public class Test {
           try {
             if(prviPut)
               rootPath = sc.nextLine();
+            prviPut=true;
             storageSpecification.setRootFolderPathInitialization(rootPath);
             System.out.println("The choosen path exist, root folder is ready to be created.");
             break;
@@ -221,6 +222,28 @@ public class Test {
                       }
                       try{
                         storageSpecification.createFolderOnSpecifiedPath(input[0],input[1]);
+                        System.out.println("Do you want to add limit of files for this folder?");
+                        while(true) {
+                          String odluka1 = sc.nextLine();
+                          if (odluka1.equalsIgnoreCase("Yes")) {
+                            System.out.println("Insert limit size:");
+                            while (true) {
+                              String l = sc.nextLine();
+                              if (isNumeric(l)) {
+                                int limit = Integer.parseInt(l);
+                                storageSpecification.addLimitForFolder(input[0],limit);
+                                break;
+                              } else {
+                                System.out.println("Wrong input, try again.");
+                              }
+                            }
+                            break;
+                          } else if (odluka1.equalsIgnoreCase("No")) {
+                            break;
+                          } else {
+                            System.out.println("Wrong input, try again.");
+                          }
+                        }
                         System.out.println("This action is completed");
                       }
                       catch (MyException e)
