@@ -192,13 +192,16 @@ public class Test {
             if (odabran == 1) {
               while(true)
               {
+                System.out.println("\n-------------------------------------------------------------------------------------");
                   System.out.println("1.Create folder on specified path");
                   System.out.println("2.Put files on specified path");
                   System.out.println("3.Delete file or directory");
                   System.out.println("4.Move file from directory to another");
                   System.out.println("5.Download file or directory");
-                  System.out.println("6.Rename file or directory\n");
-                  System.out.println("7.Back");
+                  System.out.println("6.Rename file or directory");
+                  System.out.println("7.Mkdir option\n");
+                  System.out.println("8.Back");
+                System.out.println("-------------------------------------------------------------------------------------");
                   unet=sc.nextLine();
                   if(isNumeric(unet))
                   {
@@ -268,6 +271,7 @@ public class Test {
                       String pathTo=sc.nextLine();
 
                       try{
+                        System.out.println("Compiling...");
                         storageSpecification.moveFileFromDirectoryToAnother(filePath,pathTo);
                         System.out.println("This action is completed");
                       }
@@ -284,6 +288,7 @@ public class Test {
                       String pathTo=sc.nextLine();
 
                       try {
+                        System.out.println("Compiling...");
                         storageSpecification.downloadFileOrDirectory(pathFrom,pathTo);
                         System.out.println("This action is completed");
                       }
@@ -299,6 +304,7 @@ public class Test {
                       System.out.println("Insert new name of that file or folder:");
                       String name=sc.nextLine();
                       try {
+                        System.out.println("Compiling...");
                         storageSpecification.renameFileOrDirectory(path,name);
                         System.out.println("This action is completed");
                       }
@@ -308,6 +314,22 @@ public class Test {
                       }
                     }
                     else if(odabran == 7)
+                    {
+                        System.out.println("Insert path to folder:");
+                        String path=sc.nextLine();
+                        System.out.println("Insert input to make files: ( mkdir a{0-10}b  or  mkdir a{1}b )");
+                        String input=sc.nextLine();
+                        try {
+                          System.out.println("Compiling...");
+                          storageSpecification.mkdirCreateFiles(input,path);
+                          System.out.println("This action is completed");
+                        }
+                        catch (MyException e)
+                        {
+                          System.out.println(e.getMessage());
+                        }
+                    }
+                    else if(odabran == 8)
                     {
                       break;
                     }
@@ -324,6 +346,7 @@ public class Test {
             }
             else if (odabran == 2) {
               while(true) {
+                System.out.println("\n-------------------------------------------------------------------------------------");
                 System.out.println("1.Files from directory");
                 System.out.println("2.Files from subdirectory");
                 System.out.println("3.All files from directory and subdirectory");
@@ -340,6 +363,7 @@ public class Test {
                 System.out.println("14.Return modified files from date");
                 System.out.println("15.Return modified files defore date\n");
                 System.out.println("16.Back");
+                System.out.println("-------------------------------------------------------------------------------------");
                 unet = sc.nextLine();
 
                 if(isNumeric((unet)))
@@ -352,13 +376,16 @@ public class Test {
                       Map<String,FileMetadata> map=new LinkedHashMap<>();
                       try{
 
-                        if(odabran==1)
-                          map=storageSpecification.filesFromDirectory(path);
-                        else if(odabran==2)
-                          map=storageSpecification.filesFromChildrenDirectory(path);
-                        else if(odabran==3)
-                          map=storageSpecification.allFilesFromDirectoryAndSubdirectory(path);
-                        else if( odabran<=6)
+                        if(odabran==1) {
+                          System.out.println("Searching...");
+                          map = storageSpecification.filesFromDirectory(path);
+                        }else if(odabran==2) {
+                          System.out.println("Searching...");
+                          map = storageSpecification.filesFromChildrenDirectory(path);
+                        }else if(odabran==3) {
+                          System.out.println("Searching...");
+                          map = storageSpecification.allFilesFromDirectoryAndSubdirectory(path);
+                        }else if( odabran<=6)
                         {
                           System.out.println("Insert extensions that are acceptable: (Example: .txt .pdf ...)");
                           System.out.println("If you want to stop, type 'stop'");
@@ -367,27 +394,33 @@ public class Test {
                           {
                             String s=sc.nextLine();
                             if(s.equalsIgnoreCase("stop"))
-                            {System.out.println("Starting search...");break;}
+                            {System.out.println("Searching...");break;}
                             list.add(s);
                           }
 
-                          if(odabran==4)
-                            map=storageSpecification.filesFromDirectoryExt(path,list);
-                          else if(odabran==5)
-                            map=storageSpecification.filesFromChildrenDirectoryExt(path,list);
-                          else
-                            map=storageSpecification.allFilesFromDirectoryAndSubdirectoryExt(path,list);
+                          if(odabran==4) {
+                            System.out.println("Searching...");
+                            map = storageSpecification.filesFromDirectoryExt(path, list);
+                          }else if(odabran==5){
+                            System.out.println("Searching...");
+                            map=storageSpecification.filesFromChildrenDirectoryExt(path,list);}
+                          else{
+                            System.out.println("Searching...");
+                            map=storageSpecification.allFilesFromDirectoryAndSubdirectoryExt(path,list);}
                         }
                         else
                         {
                           System.out.println("Insert substring that file name should contains:");
                           String substring=sc.nextLine();
-                          if(odabran==7)
-                            map=storageSpecification.filesFromDirectorySubstring(path,substring);
-                          else if(odabran==8)
-                            map=storageSpecification.filesFromChildrenDirectorySubstring(path,substring);
-                          else
-                            map=storageSpecification.filesFromDirectoryAndSubdirectorySubstring(path,substring);
+                          if(odabran==7){
+                            System.out.println("Searching...");
+                            map=storageSpecification.filesFromDirectorySubstring(path,substring);}
+                          else if(odabran==8){
+                            System.out.println("Searching...");
+                            map=storageSpecification.filesFromChildrenDirectorySubstring(path,substring);}
+                          else{
+                            System.out.println("Searching...");
+                            map=storageSpecification.filesFromDirectoryAndSubdirectorySubstring(path,substring);}
                         }
 
                         System.out.println("Do you want to sort map:\n1.Sort by name\n2.Sort by creating date\n3.Sort by file size\n4.Nothing");
