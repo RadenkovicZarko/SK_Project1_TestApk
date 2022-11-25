@@ -649,6 +649,7 @@ public class Test {
                           else {
                             map=storageSpecification.returnModifiedFilesInDateInterval(path,dateFrom,dateTo);
                           }
+                          System.out.println(storageSpecification.returnStringForOutput(map));
                         }
                         catch (MyException e)
                         {
@@ -677,11 +678,13 @@ public class Test {
                         try {
                           Map<String, FileMetadata> map=new LinkedHashMap<>();
                           map=storageSpecification.returnModifiedFilesFromDate(path,dateFrom);
+                          System.out.println(storageSpecification.returnStringForOutput(map));
                         }
                         catch (MyException e)
                         {
                           System.out.println(e.getMessage());
                         }
+
                       }
                       else {
                         Date dateTo=null;
@@ -704,6 +707,7 @@ public class Test {
                         try {
                           Map<String, FileMetadata> map=new LinkedHashMap<>();
                           map=storageSpecification.returnModifiedFilesBeforeDate(path,dateTo);
+                          System.out.println(storageSpecification.returnStringForOutput(map));
                         }
                         catch (MyException e)
                         {
