@@ -116,6 +116,7 @@ public class Test {
                 System.out.println("Next limit.");
               } else if(l.equalsIgnoreCase("stop"))
               {
+                System.out.println("Compiling...");
                 break;
               }else{
                 System.out.println("Wrong input, try again.");
@@ -148,6 +149,7 @@ public class Test {
                 System.out.println("Next limit.");
               } else if(l.equalsIgnoreCase("stop"))
               {
+                System.out.println("Compiling...");
                 break;
               }else{
                 System.out.println("Wrong input, try again.");
@@ -232,7 +234,8 @@ public class Test {
                       {
                         String file=sc.nextLine();
                         if(file.equalsIgnoreCase("stop"))
-                          break;
+                        {System.out.println("Compiling...");break;}
+                        System.out.println("Next file.");
                         list.add(file);
                       }
                       try{
@@ -364,7 +367,7 @@ public class Test {
                           {
                             String s=sc.nextLine();
                             if(s.equalsIgnoreCase("stop"))
-                              break;
+                            {System.out.println("Starting search...");break;}
                             list.add(s);
                           }
 
@@ -402,31 +405,35 @@ public class Test {
                             System.out.println("Selected option does not exist, try again");
                           }
                         }
+
                         boolean desOrAsc=false;
-                        System.out.println("Do you want ascending or descending: (1 or 2)");
-                        while(true)
+                        if(sort!=4)
                         {
-                          String s=sc.nextLine();
-                          if(isNumeric(s))
+                          System.out.println("Do you want ascending or descending: (1 or 2)");
+                          while(true)
                           {
-                            if(Integer.parseInt(s)==1)
+                            String s=sc.nextLine();
+                            if(isNumeric(s))
                             {
-                              desOrAsc=false;
-                              break;
-                            }
-                            else if(Integer.parseInt(s)==2)
-                            {
-                              desOrAsc=true;
-                              break;
+                              if(Integer.parseInt(s)==1)
+                              {
+                                desOrAsc=false;
+                                break;
+                              }
+                              else if(Integer.parseInt(s)==2)
+                              {
+                                desOrAsc=true;
+                                break;
+                              }
+                              else
+                              {
+                                System.out.println("Try again");
+                              }
                             }
                             else
                             {
-                              System.out.println("Try again");
+                              System.out.println("Selected option does not exist, try again");
                             }
-                          }
-                          else
-                          {
-                            System.out.println("Selected option does not exist, try again");
                           }
                         }
 
@@ -543,7 +550,7 @@ public class Test {
 
 
                       }
-                      catch (MyException e)
+                      catch (Exception e)
                       {
                         System.out.println(e.getMessage());
                       }
@@ -557,27 +564,41 @@ public class Test {
                       while(true)
                       {
                         String name=sc.nextLine();
-                        if(name.equalsIgnoreCase("stop"))break;
+                        if(name.equalsIgnoreCase("stop")){
+                          System.out.println("Starting search...");break;}
                         list.add(name);
                       }
-                      String res=storageSpecification.doesDirectoryContainFiles(path,list);
-                      if(res==null)
-                      {
-                        System.out.println("Path is not correct");
+                      try {
+                        String res = storageSpecification.doesDirectoryContainFiles(path, list);
+                        if(res==null)
+                        {
+                          System.out.println("Path is not correct");
+                        }
+                        else
+                          System.out.println(res);
                       }
-                      else
-                        System.out.println(res);
+                      catch (Exception e)
+                      {
+                        System.out.println(e.getMessage());
+                      }
+
 
                     }
                     else if(odabran==11)
                     {
                       System.out.println("Insert name of file to search");
                       String name=sc.nextLine();
-                      String res=storageSpecification.folderNameByFileName(name);
-                      if(res==null)
-                        System.out.println("File not founded or path is bad");
-                      else
-                        System.out.println(res);
+                      try {
+                        String res = storageSpecification.folderNameByFileName(name);
+                        if (res == null)
+                          System.out.println("File not founded or path is bad");
+                        else
+                          System.out.println(res);
+                      }
+                      catch (Exception e)
+                      {
+                        System.out.println(e.getMessage());
+                      }
                     }
                     else if(odabran==12 || odabran==13 || odabran==14 || odabran==15)
                     {
