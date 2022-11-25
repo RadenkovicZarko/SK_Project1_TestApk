@@ -20,7 +20,7 @@ public class Test {
   }
   public static void main(String[] args) {
     try {
-      //String path=args[0];
+      String rootPath=args[0];
       System.out.println("Welcome to our program!(1 or 2)\nChoose option:\n1.Local storage\n2.Google Drive storage");
       Scanner sc=new Scanner(System.in);
 
@@ -40,16 +40,18 @@ public class Test {
           System.out.println("Selected option does not exist");
         }
       }
-      //C:/Users/mega/Radna površina/Test2
+
       StorageSpecification storageSpecification=StorageManager.getStorage();
 
       //Za potrebe testiranja pisem path ovde da se procita sa konzole ali prvi pet se inace cita iz poziva jar funkcije iz cmd
-      System.out.println("Choose the path for root folder:");
+      //System.out.println("Choose the path for root folder:");
+      boolean prviPut=false;
       while(true)
       {
           try {
-            String path = sc.nextLine();
-            storageSpecification.setRootFolderPathInitialization(path);
+            if(prviPut)
+              rootPath = sc.nextLine();
+            storageSpecification.setRootFolderPathInitialization(rootPath);
             System.out.println("The choosen path exist, root folder is ready to be created.");
             break;
           }
@@ -218,7 +220,6 @@ public class Test {
                         continue;
                       }
                       try{
-                        System.out.println(input[0]+" "+input[1]);
                         storageSpecification.createFolderOnSpecifiedPath(input[0],input[1]);
                         System.out.println("This action is completed");
                       }
@@ -242,6 +243,7 @@ public class Test {
                         list.add(file);
                       }
                       try{
+                        System.out.println(path);
                         storageSpecification.putFilesOnSpecifiedPath(list,path);
                         System.out.println("This action is completed");
                       }catch (MyException e)
